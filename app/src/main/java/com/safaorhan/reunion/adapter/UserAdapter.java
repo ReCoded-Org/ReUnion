@@ -31,7 +31,7 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
             userClickListener = new UserClickListener() {
                 @Override
                 public void onUserClick(DocumentReference userRef) {
-                    Log.e(TAG, "You need to call setUserClickListener() to set the click listener of UserAdapter");
+                    Log.e(TAG, "You needs to call setUserClickListener() to set the click listener of UserAdapter");
                 }
             };
         }
