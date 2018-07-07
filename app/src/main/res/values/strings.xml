@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ReUnion</string>
     <string name="menu_people">People</string>
+    <string name="hello">Hello World!</string>
 </resources>
