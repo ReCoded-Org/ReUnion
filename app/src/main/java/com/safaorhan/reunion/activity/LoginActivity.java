@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText passwordEdit;
     Button loginButton;
 
+    // change in login
     boolean isTryingToLogin = false;
 
     @Override
