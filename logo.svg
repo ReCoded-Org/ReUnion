@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="297" height="169" viewBox="0 0 297 169">
+    <defs>
+        <radialGradient id="a" r="54.526%" fx="50%" fy="50%">
+            <stop offset="0%" stop-color="#FFDC60"/>
+            <stop offset="100%" stop-color="#FFE060"/>
+        </radialGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(128)">
+            <circle cx="84.5" cy="84.5" r="84.5" fill="url(#a)"/>
+            <path fill="#272232" d="M26.311 89H144.69c-2.332 29.087-27.94 52-59.189 52-31.248 0-56.857-22.913-59.189-52z"/>
+            <path fill="#FD4E60" d="M32.276 109.234c16.25-5.615 33.79-8.678 52.085-8.678 19.153 0 37.48 3.357 54.363 9.485C128.944 128.407 108.877 141 85.71 141c-23.504 0-43.818-12.963-53.435-31.766z"/>
+            <path stroke="#271900" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M140 43l-23 11.5L140 66M36 43l23 11.5L36 66"/>
+        </g>
+        <text fill="#FFF" stroke="#00BCD4" stroke-width="2" font-family="Roboto-Medium, Roboto" font-size="72" font-weight="400" transform="translate(-2)">
+            <tspan x="0" y="80">RE:</tspan> <tspan x="0" y="165">UNION</tspan>
+        </text>
+    </g>
+</svg>

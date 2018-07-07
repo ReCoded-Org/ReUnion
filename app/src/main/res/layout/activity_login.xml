@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="32dp"
-    tools:context=".activity.LoginActivity">
+    android:paddingRight="30dp"
+    android:paddingLeft="31dp"
+    tools:context=".activity.LoginActivity"
+    android:background="@color/turquoise_blue">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,23 +16,34 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="299dp"
+            android:layout_height="183dp"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="42dp"
+            />
+
         <EditText
             android:id="@+id/emailEdit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Email" />
+            android:hint="Email"
+            android:layout_marginBottom="16dp"/>
 
         <EditText
             android:id="@+id/passwordEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
+            android:hint="Password"
+            android:layout_marginBottom="24dp"/>
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log In" />
+            android:text="Log In"
+            android:textColor="@color/white"
+            android:background="@color/tomato"/>
     </LinearLayout>
 
 </RelativeLayout>
