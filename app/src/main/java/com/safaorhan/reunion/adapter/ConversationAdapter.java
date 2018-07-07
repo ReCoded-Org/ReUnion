@@ -6,8 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -78,12 +81,14 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
         View itemView;
         TextView opponentNameText;
         TextView lastMessageText;
+        ImageView contact_image;
 
         public ConversationHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             opponentNameText = itemView.findViewById(R.id.opponentNameText);
             lastMessageText = itemView.findViewById(R.id.lastMessageText);
+            contact_image = itemView.findViewById(R.id.contact_image);
         }
 
         public void bind(final Conversation conversation) {
@@ -102,9 +107,23 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     User opponent = documentSnapshot.toObject(User.class);
                     opponentNameText.setText(opponent.getName());
+                    //get first letter of each String item
+                    String firstLetter = String.valueOf(opponent.getName().charAt(0));
+
+                    ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+                    // generate random color
+                    int color = generator.getRandomColor();
+                    //int color = generator.getRandomColor();
+
+                    TextDrawable drawable = TextDrawable.builder()
+                            .buildRound(firstLetter, color); // radius in px
+
+                    contact_image.setImageDrawable(drawable);
                     itemView.setVisibility(View.VISIBLE);
                 }
             });
+
+
 
 
             if(conversation.getLastMessage() != null) {
