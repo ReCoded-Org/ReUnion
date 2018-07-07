@@ -41,6 +41,9 @@ dependencies {
     implementation "android.arch.core:runtime:1.1.1"
     implementation "android.arch.core:common:1.1.1"
 
+    // Adding textDrawable library
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+
     // Testing
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
