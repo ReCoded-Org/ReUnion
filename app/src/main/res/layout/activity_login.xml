@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
+    android:background="@color/colorPrimary"
     tools:context=".activity.LoginActivity">
 
     <LinearLayout
@@ -11,6 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="42dp"/>
 
         <EditText
             android:id="@+id/emailEdit"
@@ -24,10 +31,12 @@
             android:layout_height="wrap_content"
             android:hint="Password" />
 
+
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:text="Log In" />
     </LinearLayout>
 
