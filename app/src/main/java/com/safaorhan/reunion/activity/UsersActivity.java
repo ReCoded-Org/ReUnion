@@ -16,6 +16,7 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
 
     RecyclerView recyclerView;
     UserAdapter userAdapter;
+    // a comment from busra
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,8 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
 
         userAdapter = UserAdapter.get();
         userAdapter.setUserClickListener(this);
+
+        //hello guys it s sez
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(userAdapter);
