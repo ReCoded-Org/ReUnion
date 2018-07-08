@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LoginActivity"
-    android:background="#00bcd4"
-    android:orientation="vertical"
-    android:layout_centerInParent="true"
-    >
+    android:background="@color/turquoise_blue"
+    tools:context=".activity.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo"
-            android:layout_gravity="center"
-            android:layout_marginBottom="42dp"
-            android:layout_marginTop="99dp"
-            />
+            android:layout_marginBottom="@dimen/dp_42"
+            android:src="@drawable/logo" />
 
         <EditText
             android:id="@+id/emailEdit"
-            android:layout_width="297.1dp"
-            android:layout_height="48dp"
-            android:hint="Email"
-            android:layout_gravity="center"
-            android:backgroundTint="#f44336"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_23"
+            android:backgroundTint="@color/orange_color"
+            android:hint="@string/email" />
 
         <EditText
             android:id="@+id/passwordEdit"
-            android:layout_width="297.1dp"
-            android:layout_height="48dp"
-            android:hint="Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="30.5dp"
-            android:backgroundTint="#f44336"
-
-            />
+            android:layout_marginBottom="@dimen/dp_24"
+            android:backgroundTint="@color/orange_color"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/loginButton"
-            android:layout_width="298dp"
-            android:layout_height="36dp"
-            android:text="Log In"
-            android:background="#f44336"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@color/orange_color"
+            android:text="@string/log_in" />
 
-            />
     </LinearLayout>
+</RelativeLayout>

@@ -5,11 +5,14 @@
     android:layout_height="match_parent"
     android:background="@color/turquoise_blue"
     tools:context=".activity.SplashActivity">
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="31dp"
-        android:src="@drawable/logo"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="@dimen/dp_31"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_31"
+        android:layout_marginStart="@dimen/dp_30"
+        android:src="@drawable/logo" />
 </RelativeLayout>
