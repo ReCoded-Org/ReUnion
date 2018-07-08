@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.safaorhan.reunion.FirestoreHelper;
@@ -26,6 +27,7 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
 
         userAdapter = UserAdapter.get();
         userAdapter.setUserClickListener(this);
+        userAdapter.setContext(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(userAdapter);
@@ -48,7 +50,8 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
         FirestoreHelper.findOrCreateConversation(userRef, new FirestoreHelper.DocumentReferenceCallback() {
             @Override
             public void onCompleted(DocumentReference documentReference) {
-                finish();
+                //TODO: start new Conversation using findOrCreateConversion() (NOT SURE!!)
+                Toast.makeText(UsersActivity.this, "Will be implemented later", Toast.LENGTH_SHORT).show();
             }
         });
     }
