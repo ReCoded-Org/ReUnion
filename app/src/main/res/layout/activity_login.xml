@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="32dp"
-    tools:context=".activity.LoginActivity">
+    android:paddingLeft="30dp"
+    android:paddingRight="31dp"
+    tools:context=".activity.LoginActivity"
+    android:background="@color/blue">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,23 +14,49 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="183dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginBottom="42dp"
+            android:src="@drawable/login_logo"/>
+
         <EditText
             android:id="@+id/emailEdit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Email" />
+            android:hint="@string/email"
+            android:backgroundTint="@color/red"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:lineSpacingExtra="8sp"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/passwordEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
+            android:layout_marginBottom="41.5dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif"
+            android:hint="@string/password"
+            android:lineSpacingExtra="8sp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="normal" />
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log In" />
+            android:background="@color/red"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:letterSpacing="0.5"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:text="@string/login" />
     </LinearLayout>
 
 </RelativeLayout>

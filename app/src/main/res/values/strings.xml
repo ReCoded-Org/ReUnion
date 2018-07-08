@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ReUnion</string>
     <string name="menu_people">People</string>
+    <string name="login">Log In</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>
