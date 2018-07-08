@@ -28,6 +28,9 @@ dependencies {
     implementation 'com.android.support:support-media-compat:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.android.support:multidex:1.0.3'
+//    Here text input layout is added
+    implementation 'com.android.support:design:27.1.1'
+
 
     // Firebase
     implementation 'com.google.firebase:firebase-core:16.0.1'

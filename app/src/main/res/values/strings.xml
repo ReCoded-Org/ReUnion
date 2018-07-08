@@ -2,4 +2,7 @@
     <string name="app_name">ReUnion</string>
     <string name="menu_people">People</string>
     <string name="hello">Hello World!</string>
+    <string name="EmailEditTextHint">Email</string>
+    <string name="PasswordEditTextHint">Password</string>
+    <string name="LoginButtonText">Login</string>
 </resources>
