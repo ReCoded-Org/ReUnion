@@ -54,5 +54,6 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
                 Toast.makeText(UsersActivity.this, "Will be implemented later", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }
