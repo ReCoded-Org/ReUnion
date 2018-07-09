@@ -29,6 +29,7 @@
             android:layout_marginStart="17dp"
             android:layout_weight="1"
             app:backgroundTint="@color/colorAccent"
+            android:inputType="textShortMessage"
             />
         <ImageButton
             android:id="@+id/sendButton"

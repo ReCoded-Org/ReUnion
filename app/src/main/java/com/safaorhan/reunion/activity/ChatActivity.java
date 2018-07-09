@@ -1,22 +1,22 @@
 package com.safaorhan.reunion.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.safaorhan.reunion.FirestoreHelper;
 import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.model.Conversation;
-
 public class ChatActivity extends AppCompatActivity {
+    DocumentReference conversationRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         String conversationRefId = getIntent().getStringExtra(Conversation.CONVERSATION_KEY);
-        DocumentReference conversationRef = FirestoreHelper.getConversationRefById(conversationRefId);
+        conversationRef = FirestoreHelper.getConversationRefById(conversationRefId);
+        RecyclerView recyclerView = findViewById(R.id.messagingRecyclerView);
     }
 }
