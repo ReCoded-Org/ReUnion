@@ -30,8 +30,12 @@ public class FirestoreHelper {
                 .getInstance()
                 .getUid();
 
-        return getUsers()
-                .document(myId);
+        if (myId != null) {
+            return getUsers()
+                    .document(myId);
+        }
+        Log.e(TAG, "getMe: FirebaseAuth returned null!!");
+        return null;
     }
 
     public static CollectionReference getUsers() {
@@ -70,23 +74,27 @@ public class FirestoreHelper {
                                                     });
                                         }
                                     })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.e(TAG, "onFailute", e);
-                                }
-                            });
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e(TAG, "onFailute", e);
+                                        }
+                                    });
                         } else {
                             DocumentSnapshot snapshot = snapshots.getDocuments().get(0);
                             Conversation conversation = snapshot.toObject(Conversation.class);
-                            conversation.setId(snapshot.getId());
-                            callback.onCompleted(getConversationRef(conversation));
+                            if (conversation != null) {
+                                conversation.setId(snapshot.getId());
+                                callback.onCompleted(getConversationRef(conversation));
+                            }else {
+                                Log.e(TAG, "findOrCreateConversation: Error Couldn't find or create Conversation!!");
+                            }
                         }
                     }
                 });
     }
 
-    public static void sendMessage(final String messageText, final DocumentReference conversationRef) {
+    public static void sendMessage(final String messageText, final DocumentReference conversationRef, final ChatFeedBackCallback callback) {
         final Message message = new Message();
         message.setText(messageText);
         message.setFrom(getMe());
@@ -103,7 +111,7 @@ public class FirestoreHelper {
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        // Do nothing for now
+                                        callback.onMessageSentSuccessfully();
                                     }
                                 });
                     }
@@ -124,11 +132,23 @@ public class FirestoreHelper {
         return getConversations().document(conversation.getId());
     }
 
+    public static DocumentReference getConversationRefById(String conversationId){
+        return getConversations().document(conversationId);
+    }
+
     public static DocumentReference getUserRef(User user) {
         return getUsers().document(user.getId());
     }
 
+    public static DocumentReference getUserRefById(String userId) {
+        return getUsers().document(userId);
+    }
+
     public interface DocumentReferenceCallback {
         void onCompleted(DocumentReference documentReference);
+    }
+
+    public interface ChatFeedBackCallback {
+        void onMessageSentSuccessfully();
     }
 }

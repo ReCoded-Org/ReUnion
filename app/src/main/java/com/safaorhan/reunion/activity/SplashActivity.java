@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.safaorhan.reunion.R;
 
 public class SplashActivity extends AppCompatActivity {
+    private static final int DELAYMILLISECONDS = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,9 @@ public class SplashActivity extends AppCompatActivity {
         super.onResume();
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            navigateToLoginDelayed(1000);
+            navigateToLoginDelayed(DELAYMILLISECONDS);
         } else {
-            navigateToConversationsDelayed(1000);
+            navigateToConversationsDelayed(DELAYMILLISECONDS);
         }
     }
 

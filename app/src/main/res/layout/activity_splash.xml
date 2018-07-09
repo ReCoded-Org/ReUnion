@@ -3,19 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00bcd4"
+    android:background="@color/colorPrimary"
+    android:paddingLeft="@dimen/activitySplashLayoutPadding"
+    android:paddingRight="@dimen/activitySplashLayoutPadding"
     tools:context=".activity.SplashActivity">
-
-
-    <!--I have deleted the hello world textView and I have added an
-    ImageView -->
-
+    <!--Splash screen contain one ImageView: logo-->
     <ImageView
-        android:layout_width="299dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/logo" />
-
-
+        android:src="@drawable/logo"
+        android:contentDescription="@string/splashScreenImageDescription" />
 </RelativeLayout>

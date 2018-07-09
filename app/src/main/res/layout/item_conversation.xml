@@ -1,21 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="?android:attr/selectableItemBackground"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="horizontal"
+    android:padding="@dimen/conversationAndUserItemLayoutPadding"
+    >
 
     <TextView
-        android:id="@+id/opponentNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:id="@+id/coloredCircleText"
+        android:layout_width="@dimen/conversationAndUserItemColoredCircleDimen"
+        android:layout_height="@dimen/conversationAndUserItemColoredCircleDimen"
+        android:gravity="center"
+        tools:text="A"
+        android:textSize="@dimen/conversationAndUserItemColoredCircleTextSize"
+        android:textColor="@android:color/white"
+        android:layout_marginRight="@dimen/conversationAndUserItemColoredCircleMargin"
+        android:layout_marginEnd="@dimen/conversationAndUserItemColoredCircleMargin"
+        android:background="@drawable/colored_circle_bg"
+        />
 
-    <TextView
-        android:id="@+id/lastMessageText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" />
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        >
 
+        <TextView
+            android:id="@+id/opponentNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/primaryTextStyle"
+            tools:text="Anwar"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="start"/>
+
+        <TextView
+            android:id="@+id/lastMessageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            style="@style/secondaryTextStyle"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="Dude can you solve this problem please"
+            />
+    </LinearLayout>
 </LinearLayout>

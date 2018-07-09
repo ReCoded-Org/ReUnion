@@ -21,6 +21,8 @@
             android:layout_marginRight="30dp"
             android:layout_marginTop="99dp"
             android:src="@drawable/logo" />
+            android:hint="@string/loginEmailHint"
+            android:inputType="textEmailAddress" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_password"
@@ -65,7 +67,6 @@
                 android:maxLines="1" />
         </android.support.design.widget.TextInputLayout>
 
-
         <Button
             style="@style/ButtonStyle"
             android:layout_marginLeft="31dp"
@@ -77,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/LoginButtonText" />
+
     </LinearLayout>
 
 </RelativeLayout>

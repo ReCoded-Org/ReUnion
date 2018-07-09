@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activityChatMessagingAreaHeight">80dp</dimen>
+    <dimen name="activityChatMessagingEditTextMargin">17dp</dimen>
+    <dimen name="activityChatSendButtonDimen">40dp</dimen>
+    <dimen name="activityChatSendButtonMargin">12dp</dimen>
+    <dimen name="activityChatSendButtonElevation">12dp</dimen>
+    <dimen name="activityLoginLayoutPadding">32dp</dimen>
+    <dimen name="activitySplashLayoutPadding">30dp</dimen>
+    <dimen name="conversationAndUserItemLayoutPadding">16dp</dimen>
+    <dimen name="conversationAndUserItemColoredCircleDimen">40dp</dimen>
+    <dimen name="conversationAndUserItemColoredCircleTextSize">20sp</dimen>
+    <dimen name="conversationAndUserItemColoredCircleMargin">17dp</dimen>
+    <dimen name="PrimaryTextSize">16sp</dimen>
+    <dimen name="primarySpacingExtra">8sp</dimen>
+    <dimen name="secondarySpacingExtra">6sp</dimen>
+    <dimen name="secondaryTextSize">14sp</dimen>
+    <dimen name="messageItemLayoutPadding">12dp</dimen>
+    <dimen name="messageItemLayoutMargin">12dp</dimen>
+</resources>

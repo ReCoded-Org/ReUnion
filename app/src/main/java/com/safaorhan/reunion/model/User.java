@@ -1,10 +1,11 @@
 package com.safaorhan.reunion.model;
 
 public class User {
-    String id;
-    String name;
-    String surname;
-    String email;
+    public static String USER_KEY = "USER";
+    private String id;
+    private String name;
+    private String surname;
+    private String email;
 
     public String getId() {
         return id;

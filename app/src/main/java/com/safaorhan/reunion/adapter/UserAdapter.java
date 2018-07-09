@@ -1,5 +1,7 @@
 package com.safaorhan.reunion.adapter;
 
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,14 +21,15 @@ import com.safaorhan.reunion.model.User;
 
 public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.UserHolder> {
     private static final String TAG = UserAdapter.class.getSimpleName();
-    UserClickListener userClickListener;
+    private UserClickListener userClickListener;
+    private Context context = null;
 
 
-    public UserAdapter(@NonNull FirestoreRecyclerOptions<User> options) {
+    private UserAdapter(@NonNull FirestoreRecyclerOptions<User> options) {
         super(options);
     }
 
-    public UserClickListener getUserClickListener() {
+    private UserClickListener getUserClickListener() {
         if (userClickListener == null) {
             userClickListener = new UserClickListener() {
                 @Override
@@ -43,6 +46,13 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
         this.userClickListener = userClickListener;
     }
 
+    private Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
     public static UserAdapter get() {
         Query query = FirestoreHelper.getUsers()
@@ -69,22 +79,31 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
         return new UserHolder(itemView);
     }
 
-    public class UserHolder extends RecyclerView.ViewHolder {
+    class UserHolder extends RecyclerView.ViewHolder {
 
         View itemView;
         TextView nameText;
         TextView emailText;
+        TextView coloredCircleText;
+        GradientDrawable coloredCircleDrawable;
 
-        public UserHolder(View itemView) {
+        UserHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             nameText = itemView.findViewById(R.id.nameText);
             emailText = itemView.findViewById(R.id.emailText);
+            coloredCircleText = itemView.findViewById(R.id.coloredCircleText);
+            coloredCircleDrawable = (GradientDrawable) coloredCircleText.getBackground();
         }
 
-        public void bind(final User user) {
-            nameText.setText(user.getName() + " " + user.getSurname());
+        void bind(final User user) {
+            nameText.setText(String.format("%s %s", user.getName(), user.getSurname()));
             emailText.setText(user.getEmail());
+            coloredCircleText.setText(user.getName().substring(0, 1));
+
+            if (getContext() != null){
+                //coloredCircleDrawable.setColor(ContextCompat.getColor(getContext(), getUserColor(user)));//TODO 2: Uncomment after applying todo 1.
+            }
 
             if (user.getId().equals(FirebaseAuth.getInstance().getUid())) {
                 itemView.setOnClickListener(null);
@@ -96,6 +115,11 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
                     }
                 });
             }
+        }
+
+        private int getUserColor(User user) {
+            //TODO 1: return userColor AS int (ID).
+            return 0;
         }
     }
 

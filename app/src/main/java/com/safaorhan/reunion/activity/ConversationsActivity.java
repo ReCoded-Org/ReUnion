@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.safaorhan.reunion.R;
@@ -15,7 +16,6 @@ import com.safaorhan.reunion.adapter.ConversationAdapter;
 
 public class ConversationsActivity extends AppCompatActivity implements ConversationAdapter.ConversationClickListener {
 
-    private static final String TAG = ConversationsActivity.class.getSimpleName();
 
     RecyclerView recyclerView;
     ConversationAdapter conversationAdapter;
@@ -29,6 +29,7 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
 
         conversationAdapter = ConversationAdapter.get();
         conversationAdapter.setConversationClickListener(this);
+        conversationAdapter.setContext(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(conversationAdapter);
@@ -48,7 +49,7 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
 
     @Override
     public void onConversationClick(DocumentReference conversationRef) {
-        
+        Toast.makeText(this, "U Clicked on me!!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

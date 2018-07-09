@@ -2,13 +2,13 @@ package com.safaorhan.reunion.model;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-
 import java.util.List;
 
 public class Conversation {
-    String id;
-    DocumentReference lastMessage;
-    List<DocumentReference> participants;
+    public static final String CONVERSATION_KEY = "CONVERSATION";
+    private String id;
+    private DocumentReference lastMessage;
+    private List<DocumentReference> participants;
 
     public String getId() {
         return id;
