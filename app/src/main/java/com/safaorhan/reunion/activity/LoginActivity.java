@@ -21,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailEdit;
     EditText passwordEdit;
     Button loginButton;
-    String exampleString;
 
     boolean isTryingToLogin = false;
 

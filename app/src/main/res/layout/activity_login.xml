@@ -53,7 +53,7 @@
             android:background="@color/red"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:letterSpacing="0.5"
+            android:letterSpacing="0.04"
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:text="@string/login" />
