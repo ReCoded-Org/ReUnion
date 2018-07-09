@@ -13,7 +13,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.adapter.ConversationAdapter;
 
-public class ConversationsActivity extends AppCompatActivity implements ConversationAdapter.ConversationClickListener {
+public class ConversationsActivity extends AppCompatActivity implements
+        ConversationAdapter.ConversationClickListener {
 
     private static final String TAG = ConversationsActivity.class.getSimpleName();
 
@@ -48,7 +49,7 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
 
     @Override
     public void onConversationClick(DocumentReference conversationRef) {
-        
+        String id = conversationRef.getId();
     }
 
     @Override
@@ -57,7 +58,6 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
         inflater.inflate(R.menu.conversations, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection

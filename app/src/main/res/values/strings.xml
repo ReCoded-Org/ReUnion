@@ -4,4 +4,6 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="log_in">Log In</string>
+    <string name="conversations">Conversations</string>
+    <string name="users">Users</string>
 </resources>

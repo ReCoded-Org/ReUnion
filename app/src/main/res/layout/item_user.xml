@@ -5,35 +5,34 @@
     android:background="?android:attr/selectableItemBackground"
     android:orientation="horizontal"
     android:padding="16dp">
-    <TextView
-        android:text="yan taraf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/user_image"
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_marginLeft="10dp"
-        android:layout_height="80dp">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginStart="@dimen/dp_24"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/nameText"
             android:layout_width="wrap_content"
-            android:text="ahmed"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="ahmed" />
 
         <TextView
             android:id="@+id/emailText"
-            android:text="breem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="breem" />
 
     </LinearLayout>
-
-
-
 
 
 </LinearLayout>

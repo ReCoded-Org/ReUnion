@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/opponentNameText"
+    <ImageView
+        android:id="@+id/conversation_image"
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48" />
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:layout_marginLeft="@dimen/dp_24"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/lastMessageText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center" />
+        <TextView
+            android:id="@+id/opponentNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="opponent name" />
 
+        <TextView
+            android:id="@+id/lastMessageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="opponent message" />
+
+    </LinearLayout>
 </LinearLayout>
