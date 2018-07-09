@@ -112,7 +112,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
 
                     ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
                     // generate random color
-                    int color = generator.getRandomColor();
+                    int color = generator.getColor(opponent.getName());
                     //int color = generator.getRandomColor();
 
                     TextDrawable drawable = TextDrawable.builder()
