@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00bcd4</color>
-    <color name="colorPrimaryDark">#00acc1</color>
+ <!--this is where our colors are placed -->
+ <!--SplashScreen And LoginScreeN-->
+ <color name="BackgroundColor">#00bcd4</color>
+  <color name="colorPrimaryDark">#00acc1</color>
+ <!--editTextColor-->
+ <color name="colorEditText">#ffffff</color>
+ <color name="colorEditTextHint">#80ffffff</color>
+ <color name="colorEditTextTint">#f44336</color>
+
+ <!--buttonColor-->
+ <color name="colorButtonText">#ffffff</color>
+ <color name="colorButtonBackground">#f44336</color>
     <color name="colorAccent">#f44336</color>
     <color name="messageBoxBG">#fdfdfd</color>
 </resources>

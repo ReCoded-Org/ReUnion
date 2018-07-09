@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ReUnion</string>
+    <string name="EmailEditTextHint">E-Posta</string>
+    <string name="PasswordEditTextHint">Şifre</string>
+    <string name="LoginButtonText">Giriş yap</string>
+</resources>
