@@ -51,13 +51,16 @@ public class FirestoreHelper {
                             participants.add(getMe());
                             participants.add(opponentRef);
 
-                            final Conversation conversation = new Conversation();
+                            Conversation conversation = new Conversation();
+                            conversation.setId(getConversationId(opponentRef));
                             conversation.setParticipants(participants);
-                            getConversations()
-                                    .add(conversation)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+
+                            final DocumentReference conversationRef = getConversationRef(conversation);
+
+                            conversationRef.set(conversation)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
-                                        public void onSuccess(final DocumentReference conversationRef) {
+                                        public void onSuccess(Void aVoid) {
                                             HashMap<String, Object> updateFields = new HashMap<>();
                                             updateFields.put(getMe().getId(), true);
                                             updateFields.put(opponentRef.getId(), true);
@@ -70,12 +73,12 @@ public class FirestoreHelper {
                                                     });
                                         }
                                     })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.e(TAG, "onFailute", e);
-                                }
-                            });
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e(TAG, "onFailute", e);
+                                        }
+                                    });
                         } else {
                             DocumentSnapshot snapshot = snapshots.getDocuments().get(0);
                             Conversation conversation = snapshot.toObject(Conversation.class);
@@ -130,5 +133,20 @@ public class FirestoreHelper {
 
     public interface DocumentReferenceCallback {
         void onCompleted(DocumentReference documentReference);
+    }
+
+    public static String getConversationId(DocumentReference opponentRef) {
+        String myId = getMe().getId();
+        String opponentId = opponentRef.getId();
+
+        if (myId.equals(opponentId)) {
+            throw new IllegalArgumentException("Your opponent cannot be null");
+        }
+
+        if (myId.compareTo(opponentId) > 0) {
+            return opponentId + "-" + myId;
+        } else {
+            return myId + "-" + opponentId;
+        }
     }
 }
