@@ -1,15 +1,25 @@
 package com.safaorhan.reunion.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.safaorhan.reunion.FirestoreHelper;
 import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.adapter.UserAdapter;
+import com.safaorhan.reunion.model.Conversation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsersActivity extends AppCompatActivity implements UserAdapter.UserClickListener {
 
@@ -46,13 +56,16 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
     }
 
     @Override
-    public void onUserClick(DocumentReference userRef) {
+    public void onUserClick(final DocumentReference userRef) {
         FirestoreHelper.findOrCreateConversation(userRef, new FirestoreHelper.DocumentReferenceCallback() {
             @Override
-            public void onCompleted(DocumentReference documentReference) {
-                //TODO: start new Conversation using findOrCreateConversion() (NOT SURE!!)
-                Toast.makeText(UsersActivity.this, "Will be implemented later", Toast.LENGTH_SHORT).show();
+            public void onCompleted(DocumentReference conversationRef) {
+                Intent intent = new Intent(UsersActivity.this, ChatActivity.class);
+                intent.putExtra(Conversation.CONVERSATION_KEY, conversationRef.getId());
+                startActivity(intent);
+                finish();
             }
         });
+
     }
 }
