@@ -2,15 +2,13 @@ package com.safaorhan.reunion.model;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-
-import java.io.Serializable;
 import java.util.List;
 
 public class Conversation {
     public static final String CONVERSATION_KEY = "CONVERSATION";
-    String id;
-    DocumentReference lastMessage;
-    List<DocumentReference> participants;
+    private String id;
+    private DocumentReference lastMessage;
+    private List<DocumentReference> participants;
 
     public String getId() {
         return id;
@@ -28,7 +26,7 @@ public class Conversation {
         this.lastMessage = lastMessage;
     }
 
-    public List<DocumentReference> getParticipants() {
+    private List<DocumentReference> getParticipants() {
         return participants;
     }
 

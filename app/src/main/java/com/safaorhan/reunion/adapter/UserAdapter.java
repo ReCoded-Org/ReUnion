@@ -3,7 +3,6 @@ package com.safaorhan.reunion.adapter;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,15 +21,15 @@ import com.safaorhan.reunion.model.User;
 
 public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.UserHolder> {
     private static final String TAG = UserAdapter.class.getSimpleName();
-    UserClickListener userClickListener;
+    private UserClickListener userClickListener;
     private Context context = null;
 
 
-    public UserAdapter(@NonNull FirestoreRecyclerOptions<User> options) {
+    private UserAdapter(@NonNull FirestoreRecyclerOptions<User> options) {
         super(options);
     }
 
-    public UserClickListener getUserClickListener() {
+    private UserClickListener getUserClickListener() {
         if (userClickListener == null) {
             userClickListener = new UserClickListener() {
                 @Override
@@ -47,7 +46,7 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
         this.userClickListener = userClickListener;
     }
 
-    public Context getContext() {
+    private Context getContext() {
         return context;
     }
 
@@ -80,7 +79,7 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
         return new UserHolder(itemView);
     }
 
-    public class UserHolder extends RecyclerView.ViewHolder {
+    class UserHolder extends RecyclerView.ViewHolder {
 
         View itemView;
         TextView nameText;
@@ -88,7 +87,7 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
         TextView coloredCircleText;
         GradientDrawable coloredCircleDrawable;
 
-        public UserHolder(View itemView) {
+        UserHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             nameText = itemView.findViewById(R.id.nameText);
@@ -97,8 +96,8 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
             coloredCircleDrawable = (GradientDrawable) coloredCircleText.getBackground();
         }
 
-        public void bind(final User user) {
-            nameText.setText(user.getName() + " " + user.getSurname());
+        void bind(final User user) {
+            nameText.setText(String.format("%s %s", user.getName(), user.getSurname()));
             emailText.setText(user.getEmail());
             coloredCircleText.setText(user.getName().substring(0, 1));
 

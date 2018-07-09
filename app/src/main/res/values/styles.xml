@@ -1,11 +1,17 @@
 <resources>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="primaryTextStyle">
+        <item name="android:textSize">@dimen/PrimaryTextSize</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:lineSpacingExtra">@dimen/primarySpacingExtra</item>
+    </style>
+    <style name="secondaryTextStyle">
+        <item name="android:lineSpacingExtra">@dimen/secondarySpacingExtra</item>
+        <item name="android:textSize">@dimen/secondaryTextSize</item>
+    </style>
 </resources>

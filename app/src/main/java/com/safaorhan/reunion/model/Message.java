@@ -5,10 +5,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.ServerTimestamp;
 
 public class Message {
-    DocumentReference conversation;
-    DocumentReference from;
-    String text;
-    @ServerTimestamp Timestamp sentAt;
+    private DocumentReference conversation;
+    private DocumentReference from;
+    private String text;
+    @ServerTimestamp
+    private Timestamp sentAt;
 
     public DocumentReference getConversation() {
         return conversation;

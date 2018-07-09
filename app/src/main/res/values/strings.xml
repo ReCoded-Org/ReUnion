@@ -2,4 +2,12 @@
     <string name="app_name">ReUnion</string>
     <string name="menu_people">People</string>
     <string name="hello">Hello World!</string>
+    <string name="chatActivityStarterTitle">Chat With</string>
+    <string name="opponentUserEmptyError">Unexpected Error!!..</string>
+    <string name="missingLastMessageReplacerText">Write something to start a conversation!</string>
+    <string name="sendMessageButtonDescription">Send Message Button</string>
+    <string name="loginEmailHint">Email</string>
+    <string name="loginPasswordHint">Password</string>
+    <string name="loginButtonText">Log In</string>
+    <string name="splashScreenImageDescription">Re:Union Splash Screen</string>
 </resources>

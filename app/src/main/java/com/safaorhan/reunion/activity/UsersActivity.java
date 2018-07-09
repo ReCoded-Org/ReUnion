@@ -2,28 +2,19 @@ package com.safaorhan.reunion.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.safaorhan.reunion.FirestoreHelper;
 import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.adapter.UserAdapter;
 import com.safaorhan.reunion.model.Conversation;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.safaorhan.reunion.model.User;
 
 public class UsersActivity extends AppCompatActivity implements UserAdapter.UserClickListener {
 
-    private static final String TAG = UsersActivity.class.getSimpleName();
 
     RecyclerView recyclerView;
     UserAdapter userAdapter;
@@ -62,6 +53,7 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
             public void onCompleted(DocumentReference conversationRef) {
                 Intent intent = new Intent(UsersActivity.this, ChatActivity.class);
                 intent.putExtra(Conversation.CONVERSATION_KEY, conversationRef.getId());
+                intent.putExtra(User.USER_KEY, userRef.getId());
                 startActivity(intent);
                 finish();
             }

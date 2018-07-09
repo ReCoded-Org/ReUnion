@@ -5,19 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="?android:attr/selectableItemBackground"
     android:orientation="horizontal"
-    android:padding="16dp"
+    android:padding="@dimen/conversationAndUserItemLayoutPadding"
     >
 
     <TextView
         android:id="@+id/coloredCircleText"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/conversationAndUserItemColoredCircleDimen"
+        android:layout_height="@dimen/conversationAndUserItemColoredCircleDimen"
         android:gravity="center"
         tools:text="A"
-        android:textSize="20sp"
+        android:textSize="@dimen/conversationAndUserItemColoredCircleTextSize"
         android:textColor="@android:color/white"
-        android:layout_marginRight="17dp"
-        android:layout_marginEnd="17dp"
+        android:layout_marginRight="@dimen/conversationAndUserItemColoredCircleMargin"
+        android:layout_marginEnd="@dimen/conversationAndUserItemColoredCircleMargin"
         android:background="@drawable/colored_circle_bg"
         />
 
@@ -32,9 +32,7 @@
             android:id="@+id/opponentNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:lineSpacingExtra="8sp"
+            style="@style/primaryTextStyle"
             tools:text="Anwar"
             android:maxLines="1"
             android:ellipsize="end"
@@ -45,12 +43,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="14sp"
-            android:lineSpacingExtra="6sp"
+            style="@style/secondaryTextStyle"
             android:maxLines="1"
             android:ellipsize="end"
             tools:text="Dude can you solve this problem please"
             />
     </LinearLayout>
-
 </LinearLayout>

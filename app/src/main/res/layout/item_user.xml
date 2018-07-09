@@ -5,18 +5,18 @@
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="@dimen/conversationAndUserItemLayoutPadding">
 
     <TextView
         android:id="@+id/coloredCircleText"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
+        android:layout_width="@dimen/conversationAndUserItemColoredCircleDimen"
+        android:layout_height="@dimen/conversationAndUserItemColoredCircleDimen"
+        android:layout_marginEnd="@dimen/conversationAndUserItemColoredCircleMargin"
+        android:layout_marginRight="@dimen/conversationAndUserItemColoredCircleMargin"
         android:background="@drawable/colored_circle_bg"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="20sp"
+        android:textSize="@dimen/conversationAndUserItemColoredCircleTextSize"
         tools:text="A" />
 
     <LinearLayout
@@ -27,26 +27,22 @@
 
         <TextView
             android:id="@+id/nameText"
+            style="@style/primaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:lineSpacingExtra="8sp"
-            tools:text="Anwar Hussein"
-            android:maxLines="1"
             android:ellipsize="end"
-            android:gravity="start"/>
+            android:gravity="start"
+            android:maxLines="1"
+            tools:text="Anwar Hussein" />
 
         <TextView
             android:id="@+id/emailText"
+            style="@style/secondaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:lineSpacingExtra="6sp"
-            android:maxLines="1"
             android:ellipsize="end"
-            tools:text="team5@nomail.me"
-            />
+            android:gravity="center"
+            android:maxLines="1"
+            tools:text="team5@nomail.me" />
     </LinearLayout>
 </LinearLayout>

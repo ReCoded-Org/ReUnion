@@ -3,7 +3,6 @@ package com.safaorhan.reunion.adapter;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,15 +25,15 @@ import com.safaorhan.reunion.model.User;
 
 public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, ConversationAdapter.ConversationHolder> {
     private static final String TAG = ConversationAdapter.class.getSimpleName();
-    ConversationClickListener conversationClickListener;
+    private ConversationClickListener conversationClickListener;
     private Context context = null;
 
-    public ConversationAdapter(@NonNull FirestoreRecyclerOptions<Conversation> options) {
+    private ConversationAdapter(@NonNull FirestoreRecyclerOptions<Conversation> options) {
         super(options);
     }
 
 
-    public ConversationClickListener getConversationClickListener() {
+    private ConversationClickListener getConversationClickListener() {
         if (conversationClickListener == null) {
             conversationClickListener = new ConversationClickListener() {
                 @Override
@@ -51,7 +50,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
         this.conversationClickListener = conversationClickListener;
     }
 
-    public Context getContext() {
+    private Context getContext() {
         return context;
     }
 
@@ -85,7 +84,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
         return new ConversationHolder(itemView);
     }
 
-    public class ConversationHolder extends RecyclerView.ViewHolder {
+    class ConversationHolder extends RecyclerView.ViewHolder {
 
         View itemView;
         TextView opponentNameText;
@@ -97,7 +96,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
         private DocumentSnapshot opponentDS = null;
 
 
-        public ConversationHolder(View itemView) {
+        ConversationHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             opponentNameText = itemView.findViewById(R.id.opponentNameText);
@@ -106,14 +105,14 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
             coloredCircleDrawable = (GradientDrawable) coloredCircleText.getBackground();
         }
 
-        public void bind(final Conversation conversation) {
+        void bind(final Conversation conversation) {
             if (opponentUser == null) {
                 conversation.getOpponent().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         opponentDS = documentSnapshot;
                         opponentUser = documentSnapshot.toObject(User.class);
-                        opponentNameText.setText(opponentUser.getName());
+                        opponentNameText.setText(opponentUser != null ? opponentUser.getName() : null);
                         coloredCircleText.setText(opponentUser.getName().substring(0, 1));
                         if (getContext() != null) {
                             //coloredCircleDrawable.setColor(ContextCompat.getColor(getContext(), getUserColor(opponentDS)));//TODO 2: Uncomment after applying todo 1.
@@ -133,11 +132,11 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             lastMessage = documentSnapshot.toObject(Message.class);
-                            lastMessageText.setText(lastMessage.getText());
+                            lastMessageText.setText(lastMessage != null ? lastMessage.getText() : null);
                         }
                     });
                 } else {
-                    lastMessageText.setText("Write something to start a conversation!");
+                    lastMessageText.setText(R.string.missingLastMessageReplacerText);
                 }
             } else {
                 lastMessageText.setText(lastMessage.getText());

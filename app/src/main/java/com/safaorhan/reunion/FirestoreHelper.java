@@ -30,8 +30,12 @@ public class FirestoreHelper {
                 .getInstance()
                 .getUid();
 
-        return getUsers()
-                .document(myId);
+        if (myId != null) {
+            return getUsers()
+                    .document(myId);
+        }
+        Log.e(TAG, "Error FirebaseAuth returned Null value");
+        return null;
     }
 
     public static CollectionReference getUsers() {
@@ -79,8 +83,11 @@ public class FirestoreHelper {
                         } else {
                             DocumentSnapshot snapshot = snapshots.getDocuments().get(0);
                             Conversation conversation = snapshot.toObject(Conversation.class);
-                            conversation.setId(snapshot.getId());
-                            callback.onCompleted(getConversationRef(conversation));
+                            if (conversation != null) {
+                                conversation.setId(snapshot.getId());
+                                callback.onCompleted(getConversationRef(conversation));
+                            }else
+                                Log.e(TAG, "findOrCreateConversation: Error Couldn't find or create Conversation");
                         }
                     }
                 });
@@ -126,6 +133,10 @@ public class FirestoreHelper {
 
     public static DocumentReference getConversationRefById(String id){
         return getConversations().document(id);
+    }
+
+    public static DocumentReference getUserRefById(String id){
+        return getUsers().document(id);
     }
 
     public static DocumentReference getUserRef(User user) {
