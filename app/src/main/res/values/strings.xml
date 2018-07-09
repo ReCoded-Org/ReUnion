@@ -10,4 +10,6 @@
     <string name="loginPasswordHint">Password</string>
     <string name="loginButtonText">Log In</string>
     <string name="splashScreenImageDescription">Re:Union Splash Screen</string>
+    <string name="conversationActivityLabel">Conversations</string>
+    <string name="usersActivityLabel">People</string>
 </resources>

@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import com.google.firebase.firestore.DocumentReference;
 import com.safaorhan.reunion.FirestoreHelper;
 import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.adapter.UserAdapter;
 import com.safaorhan.reunion.model.Conversation;
-import com.safaorhan.reunion.model.User;
 
 public class UsersActivity extends AppCompatActivity implements UserAdapter.UserClickListener {
 
@@ -53,7 +51,6 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
             public void onCompleted(DocumentReference conversationRef) {
                 Intent intent = new Intent(UsersActivity.this, ChatActivity.class);
                 intent.putExtra(Conversation.CONVERSATION_KEY, conversationRef.getId());
-                intent.putExtra(User.USER_KEY, userRef.getId());
                 startActivity(intent);
                 finish();
             }

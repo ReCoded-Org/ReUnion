@@ -105,7 +105,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
             coloredCircleDrawable = (GradientDrawable) coloredCircleText.getBackground();
         }
 
-        void bind(final Conversation conversation) {
+        private void bind(final Conversation conversation) {
             if (opponentUser == null) {
                 conversation.getOpponent().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override

@@ -34,7 +34,7 @@ public class FirestoreHelper {
             return getUsers()
                     .document(myId);
         }
-        Log.e(TAG, "Error FirebaseAuth returned Null value");
+        Log.e(TAG, "getMe: FirebaseAuth returned null!!");
         return null;
     }
 
@@ -74,20 +74,21 @@ public class FirestoreHelper {
                                                     });
                                         }
                                     })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.e(TAG, "onFailute", e);
-                                }
-                            });
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e(TAG, "onFailute", e);
+                                        }
+                                    });
                         } else {
                             DocumentSnapshot snapshot = snapshots.getDocuments().get(0);
                             Conversation conversation = snapshot.toObject(Conversation.class);
                             if (conversation != null) {
                                 conversation.setId(snapshot.getId());
                                 callback.onCompleted(getConversationRef(conversation));
-                            }else
-                                Log.e(TAG, "findOrCreateConversation: Error Couldn't find or create Conversation");
+                            }else {
+                                Log.e(TAG, "findOrCreateConversation: Error Couldn't find or create Conversation!!");
+                            }
                         }
                     }
                 });
@@ -131,16 +132,16 @@ public class FirestoreHelper {
         return getConversations().document(conversation.getId());
     }
 
-    public static DocumentReference getConversationRefById(String id){
-        return getConversations().document(id);
-    }
-
-    public static DocumentReference getUserRefById(String id){
-        return getUsers().document(id);
+    public static DocumentReference getConversationRefById(String conversationId){
+        return getConversations().document(conversationId);
     }
 
     public static DocumentReference getUserRef(User user) {
         return getUsers().document(user.getId());
+    }
+
+    public static DocumentReference getUserRefById(String userId) {
+        return getUsers().document(userId);
     }
 
     public interface DocumentReferenceCallback {

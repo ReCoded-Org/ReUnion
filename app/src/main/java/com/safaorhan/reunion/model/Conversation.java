@@ -26,7 +26,7 @@ public class Conversation {
         this.lastMessage = lastMessage;
     }
 
-    private List<DocumentReference> getParticipants() {
+    public List<DocumentReference> getParticipants() {
         return participants;
     }
 

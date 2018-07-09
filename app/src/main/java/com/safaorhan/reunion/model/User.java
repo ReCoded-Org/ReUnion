@@ -1,7 +1,7 @@
 package com.safaorhan.reunion.model;
 
 public class User {
-    public static final String USER_KEY = "USER";
+    public static String USER_KEY = "USER";
     private String id;
     private String name;
     private String surname;

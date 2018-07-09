@@ -16,6 +16,7 @@ import com.safaorhan.reunion.adapter.ConversationAdapter;
 
 public class ConversationsActivity extends AppCompatActivity implements ConversationAdapter.ConversationClickListener {
 
+
     RecyclerView recyclerView;
     ConversationAdapter conversationAdapter;
 
