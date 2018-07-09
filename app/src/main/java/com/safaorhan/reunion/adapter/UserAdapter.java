@@ -1,13 +1,17 @@
 package com.safaorhan.reunion.adapter;
 
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -74,12 +78,14 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
         View itemView;
         TextView nameText;
         TextView emailText;
+        ImageView userImage;
 
         public UserHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             nameText = itemView.findViewById(R.id.nameText);
             emailText = itemView.findViewById(R.id.emailText);
+            userImage = itemView.findViewById(R.id.user_image);
         }
 
         public void bind(final User user) {
@@ -96,6 +102,15 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
                     }
                 });
             }
+
+            String firstChar = String.valueOf(user.getName().charAt(0));
+
+            // using the text drawable
+            ColorGenerator generator = ColorGenerator.MATERIAL;
+            int color = generator.getColor(user.getEmail());
+            TextDrawable drawable = TextDrawable.builder()
+                    .buildRound(firstChar, color);
+            userImage.setImageDrawable(drawable);
         }
     }
 

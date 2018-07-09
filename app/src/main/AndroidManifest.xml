@@ -17,9 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.ConversationsActivity" />
-        <activity android:name=".activity.UsersActivity" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="@string/log_in" />
+        <activity
+            android:name=".activity.ConversationsActivity"
+            android:label="@string/conversations" />
+        <activity
+            android:name=".activity.UsersActivity"
+            android:label="@string/users" />
+        <activity android:name=".activity.MessageActivity"></activity>
     </application>
 
 </manifest>
