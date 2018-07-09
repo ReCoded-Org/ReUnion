@@ -86,7 +86,7 @@ public class FirestoreHelper {
                 });
     }
 
-    public static void sendMessage(final String messageText, final DocumentReference conversationRef) {
+    public static void sendMessage(final String messageText, final DocumentReference conversationRef, final ChatFeedBackCallback callback) {
         final Message message = new Message();
         message.setText(messageText);
         message.setFrom(getMe());
@@ -103,7 +103,7 @@ public class FirestoreHelper {
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        // Do nothing for now
+                                        callback.onMessageSentSuccessfully();
                                     }
                                 });
                     }
@@ -124,11 +124,19 @@ public class FirestoreHelper {
         return getConversations().document(conversation.getId());
     }
 
+    public static DocumentReference getConversationRefById(String id){
+        return getConversations().document(id);
+    }
+
     public static DocumentReference getUserRef(User user) {
         return getUsers().document(user.getId());
     }
 
     public interface DocumentReferenceCallback {
         void onCompleted(DocumentReference documentReference);
+    }
+
+    public interface ChatFeedBackCallback {
+        void onMessageSentSuccessfully();
     }
 }

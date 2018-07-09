@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tile_background"
+    android:orientation="vertical"
+    tools:context=".activity.ChatActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/messagingRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"  />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/messageBoxBG"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/messageAppCompatEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_weight="1"
+            app:backgroundTint="@color/colorAccent"
+            />
+        <ImageButton
+            android:id="@+id/sendButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="12dp"
+            android:background="@drawable/colored_circle_send_button"
+            android:scaleType="fitXY"
+            android:src="@drawable/send_arrow"
+            android:elevation="12dp"/>
+        <!--TODO: Override resources in layout-v21 after every thing is ready to fix the elevation -->
+    </LinearLayout>
+
+
+</LinearLayout>
