@@ -48,7 +48,9 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
 
     @Override
     public void onConversationClick(DocumentReference conversationRef) {
-        
+        String id = conversationRef.getId();
+        Intent intent = new Intent(ConversationsActivity.this, ChatActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -70,4 +72,6 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

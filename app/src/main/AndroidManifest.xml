@@ -22,6 +22,7 @@
             android:theme="@style/AppThemeLogin"/>
         <activity android:name=".activity.ConversationsActivity" />
         <activity android:name=".activity.UsersActivity" />
+        <activity android:name=".activity.ChatActivity" />
     </application>
 
 </manifest>
