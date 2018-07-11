@@ -48,8 +48,9 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
 
     @Override
     public void onConversationClick(DocumentReference conversationRef) {
-        String id = conversationRef.getId();
+        String documentPath = conversationRef.getPath();
         Intent intent = new Intent(ConversationsActivity.this, ChatActivity.class);
+        intent.putExtra("documentPath", documentPath);
         startActivity(intent);
     }
 

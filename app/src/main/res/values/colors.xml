@@ -6,4 +6,5 @@
     <color name="hintColor">#80ffffff</color>
     <color name="userNameColor">#de000000</color>
     <color name="userInfoColor">#8b000000</color>
+    <color name="chat_send_background">#fdfdfd</color>
 </resources>
