@@ -54,6 +54,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
         Query query = FirebaseFirestore.getInstance()
                 .collection("conversations")
                 //.orderBy("timestamp")
+                .whereEqualTo(FirestoreHelper.getMe().getId(), true)
                 .limit(50);
 
         FirestoreRecyclerOptions<Conversation> options = new FirestoreRecyclerOptions.Builder<Conversation>()
@@ -123,10 +124,8 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
                 }
             });
 
-
-
-
             if(conversation.getLastMessage() != null) {
+
                 conversation.getLastMessage().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
