@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@android:color/white"
-    android:padding="12dp">
+    android:padding="12dp"
+    android:layout_marginBottom="12dp">
 
     <TextView
         android:id="@+id/chat_item_name"
