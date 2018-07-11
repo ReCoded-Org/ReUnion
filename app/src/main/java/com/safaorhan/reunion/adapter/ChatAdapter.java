@@ -31,7 +31,7 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
 
     @Override
     protected void onBindViewHolder(@NonNull ChatHolder holder, int position, @NonNull Message model) {
-        holder.bind(getSnapshots().get(position));
+        holder.bind(model);
     }
 
     @NonNull
@@ -67,7 +67,7 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
     public static ChatAdapter get(DocumentReference documentReference) {
         Query query = FirebaseFirestore.getInstance().collection("messages")
                 .whereEqualTo("conversation", documentReference)
-                .orderBy("sentAt");
+                .orderBy("sentAt", Query.Direction.ASCENDING);
 
         FirestoreRecyclerOptions<Message> options = new FirestoreRecyclerOptions.Builder<Message>()
                 .setQuery(query, Message.class)

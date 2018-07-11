@@ -36,10 +36,11 @@ public class ChatActivity extends AppCompatActivity {
         chatMessageText = findViewById(R.id.chat_message_et);
         fab = findViewById(R.id.chat_fab);
         final String documentPath = getIntent().getStringExtra("documentPath");
-        chatAdapter = ChatAdapter.get(FirebaseFirestore.getInstance().document(documentPath));
+        chatAdapter = ChatAdapter.get(firestore.document(documentPath));
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(chatAdapter);
+
 
         chatAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -49,8 +50,9 @@ public class ChatActivity extends AppCompatActivity {
                 int lastVisiblePosition = linearLayoutManager.findLastCompletelyVisibleItemPosition();
                 if (lastVisiblePosition == -1 ||
                         (positionStart >= (friendlyMessageCount - 1) && lastVisiblePosition == (positionStart - 1))) {
-                    recyclerView.scrollToPosition(positionStart);
+                    recyclerView.smoothScrollToPosition(positionStart);
                 }
+
             }
         });
 
@@ -67,10 +69,10 @@ public class ChatActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chatMessageText.getText().toString().trim()!=null && !TextUtils.isEmpty(chatMessageText.getText().toString().trim())){
-                    FirestoreHelper.sendMessage(chatMessageText.getText().toString().trim(), FirebaseFirestore.getInstance().document(documentPath));
+                if (!TextUtils.isEmpty(chatMessageText.getText().toString().trim())){
+                    FirestoreHelper.sendMessage(chatMessageText.getText().toString().trim(), firestore.document(documentPath));
                     chatMessageText.setText("");
-                    chatAdapter.notifyDataSetChanged();
+
                 } else {
                     chatMessageText.setText("");
                 }
