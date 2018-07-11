@@ -1,6 +1,5 @@
 package com.safaorhan.reunion.adapter;
 
-import android.app.DownloadManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,13 +9,13 @@ import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.model.Message;
-
-import org.w3c.dom.Text;
 
 public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.ChatHolder> {
 
@@ -32,7 +31,7 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
 
     @Override
     protected void onBindViewHolder(@NonNull ChatHolder holder, int position, @NonNull Message model) {
-        holder.bind(model);
+        holder.bind(getSnapshots().get(position));
     }
 
     @NonNull
@@ -54,17 +53,21 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
             chatMessageText = itemView.findViewById(R.id.chat_item_message);
         }
 
-        public void bind(final Message message){
-
-            chatNameText.setText(message.getFrom().toString());
-            chatMessageText.setText(message.getText());
+        public void bind(final Message message) {
+            message.getFrom().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot snapshot) {
+                    chatNameText.setText(snapshot.getString("name"));
+                    chatMessageText.setText(message.getText());
+                }
+            });
         }
     }
 
-    public static ChatAdapter get(DocumentReference documentReference){
+    public static ChatAdapter get(DocumentReference documentReference) {
         Query query = FirebaseFirestore.getInstance().collection("messages")
-        .whereEqualTo("converstions", documentReference)
-        .limit(50);
+                .whereEqualTo("conversation", documentReference)
+                .orderBy("sentAt");
 
         FirestoreRecyclerOptions<Message> options = new FirestoreRecyclerOptions.Builder<Message>()
                 .setQuery(query, Message.class)
