@@ -31,7 +31,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/hintColor" />
+            android:backgroundTint="@color/colorAccent" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/chat_fab"

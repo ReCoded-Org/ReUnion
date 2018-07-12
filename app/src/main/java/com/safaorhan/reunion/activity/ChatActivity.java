@@ -50,7 +50,10 @@ public class ChatActivity extends AppCompatActivity {
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 if(bottom<oldBottom){
                     int messageCount = chatAdapter.getItemCount();
-                    recyclerView.smoothScrollToPosition(messageCount-1);
+                    if (messageCount!=-1&&messageCount>=1){
+                        recyclerView.scrollToPosition(messageCount-1);
+                    }
+
                 }
             }
         });
