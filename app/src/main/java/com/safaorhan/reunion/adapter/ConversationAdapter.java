@@ -54,7 +54,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
     public static ConversationAdapter get() {
         Query query = FirebaseFirestore.getInstance()
                 .collection("conversations")
-                //.orderBy("timestamp")
+                //.orderBy("conversationTime", Query.Direction.DESCENDING)
                 .whereEqualTo(FirestoreHelper.getMe().getId(), true)
                 .limit(50);
 
