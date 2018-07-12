@@ -22,7 +22,8 @@
             android:theme="@style/AppThemeLogin"/>
         <activity android:name=".activity.ConversationsActivity" />
         <activity android:name=".activity.UsersActivity" />
-        <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.ChatActivity"
+                    android:launchMode="singleTop"/>
     </application>
 
 </manifest>

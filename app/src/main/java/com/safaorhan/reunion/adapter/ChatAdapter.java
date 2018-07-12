@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.firebase.ui.common.ChangeEventType;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,22 +20,18 @@ import com.safaorhan.reunion.model.Message;
 
 public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.ChatHolder> {
 
-    /**
-     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
-     * FirestoreRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
+
+    OnChatMessageAddedListener listener;
+
+
     public ChatAdapter(@NonNull FirestoreRecyclerOptions<Message> options) {
         super(options);
     }
 
-    public int position(){
-       return getSnapshots().size();
-    }
     @Override
-    protected void onBindViewHolder(@NonNull ChatHolder holder, int position, @NonNull Message model) {
+    protected void onBindViewHolder(@NonNull final ChatHolder holder, int position, @NonNull final Message model) {
         holder.bind(model);
+
     }
 
     @NonNull
@@ -48,23 +45,43 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
         View itemView;
         TextView chatNameText;
         TextView chatMessageText;
+        View loadingView;
 
         public ChatHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             chatNameText = itemView.findViewById(R.id.chat_item_name);
             chatMessageText = itemView.findViewById(R.id.chat_item_message);
+            loadingView = itemView.findViewById(R.id.loadingView);
         }
 
         public void bind(final Message message) {
+            loadingView.setVisibility(View.INVISIBLE);
             message.getFrom().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot snapshot) {
                     chatNameText.setText(snapshot.getString("name"));
                     chatMessageText.setText(message.getText());
+                    loadingView.setVisibility(View.INVISIBLE);
                 }
             });
         }
+    }
+
+    @Override
+    public void onChildChanged(@NonNull ChangeEventType type, @NonNull DocumentSnapshot snapshot, int newIndex, int oldIndex) {
+        super.onChildChanged(type, snapshot, newIndex, oldIndex);
+        if (type == ChangeEventType.ADDED) {
+            getListener().onChatMessageAdded(newIndex);
+        }
+    }
+
+    public OnChatMessageAddedListener getListener() {
+        return listener;
+    }
+
+    public void setListener(OnChatMessageAddedListener listener) {
+        this.listener = listener;
     }
 
     public static ChatAdapter get(DocumentReference documentReference) {
@@ -77,4 +94,9 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
                 .build();
         return new ChatAdapter(options);
     }
+
+    public interface OnChatMessageAddedListener {
+        void onChatMessageAdded(int lastPosition);
+    }
 }
+

@@ -23,7 +23,6 @@ public class ChatActivity extends AppCompatActivity {
     private ChatAdapter chatAdapter;
     private LinearLayoutManager linearLayoutManager;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,28 +30,20 @@ public class ChatActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.chat_rv);
 
-
         chatMessageText = findViewById(R.id.chat_message_et);
         FloatingActionButton fab = findViewById(R.id.chat_fab);
         final String documentPath = getIntent().getStringExtra("documentPath");
         chatAdapter = ChatAdapter.get(FirebaseFirestore.getInstance().document(documentPath));
-        linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(chatAdapter);
-
-        chatAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+        chatAdapter.setListener(new ChatAdapter.OnChatMessageAddedListener() {
             @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                super.onItemRangeInserted(positionStart, itemCount);
-                int friendlyMessageCount = chatAdapter.getItemCount();
-                int lastVisiblePosition = linearLayoutManager.findLastCompletelyVisibleItemPosition();
-                if (lastVisiblePosition == -1 ||
-                        (positionStart >= (friendlyMessageCount - 1) && lastVisiblePosition == (positionStart - 1))) {
-                    recyclerView.scrollToPosition(positionStart);
-                }
+            public void onChatMessageAdded(int lastPosition) {
+                recyclerView.scrollToPosition(lastPosition);
             }
         });
+
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(chatAdapter);
 
         recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
@@ -70,7 +61,7 @@ public class ChatActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(chatMessageText.getText().toString().trim())){
                     FirestoreHelper.sendMessage(chatMessageText.getText().toString().trim(), FirebaseFirestore.getInstance().document(documentPath));
                     chatMessageText.setText("");
-                } else {
+                }else {
                     chatMessageText.setText("");
                 }
             }

@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@android:color/white"
-    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="12dp">
 
-    <TextView
-        android:id="@+id/chat_item_name"
-        tools:text="Group 8"
-        android:textSize="16sp"
-        android:layout_marginBottom="4dp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/userNameColor"/>
-    <TextView
-        tools:text="We'll win :)"
-        android:id="@+id/chat_item_message"
-        android:textSize="14sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/userInfoColor"/>
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="12dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/chat_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/userNameColor"
+            android:textSize="16sp"
+            tools:text="Group 8" />
+
+        <TextView
+            android:id="@+id/chat_item_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/userInfoColor"
+            android:textSize="14sp"
+            tools:text="We'll win :)" />
+
+    </LinearLayout>
+    <View
+        android:id="@+id/loadingView"
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:layout_height="70dp"/>
+
+</RelativeLayout>
