@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="32dp"
     android:background="@color/colorPrimary"
+    android:padding="32dp"
     tools:context=".activity.LoginActivity">
 
     <LinearLayout
@@ -16,32 +16,35 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo"
-            android:layout_marginBottom="42dp"/>
+            android:layout_marginBottom="42dp"
+            android:src="@drawable/logo" />
 
         <EditText
             android:id="@+id/emailEdit"
-            android:textColor="@android:color/white"
-            android:textColorHint="@color/hintColor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Email" />
+            android:backgroundTint="@color/hintColor"
+            android:hint="Email"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/hintColor" />
 
         <EditText
             android:id="@+id/passwordEdit"
             android:layout_width="match_parent"
-            android:textColor="@android:color/white"
-            android:textColorHint="@color/hintColor"
             android:layout_height="wrap_content"
-            android:hint="Password" />
-
+            android:backgroundTint="@color/hintColor"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/hintColor" />
 
         <Button
             android:id="@+id/loginButton"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Colored"
             android:text="Log In" />
     </LinearLayout>
-
 </RelativeLayout>
