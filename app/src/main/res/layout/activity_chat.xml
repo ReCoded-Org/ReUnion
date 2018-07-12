@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/tile_background">
 
     <android.support.v7.widget.RecyclerView
@@ -25,21 +26,25 @@
             android:id="@+id/chat_message_et"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="12dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="16dp"
-            android:layout_weight="1"
+            android:layout_weight="0.82"
+            android:inputType="textCapSentences"
             android:backgroundTint="@color/colorAccent" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/chat_fab"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_weight="0.12"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            android:elevation="4dp"
+            android:scaleType="center"
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_send" />
     </LinearLayout>
