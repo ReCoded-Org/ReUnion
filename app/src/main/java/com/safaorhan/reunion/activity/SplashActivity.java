@@ -46,8 +46,10 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         }, delayMillis);
+
     }
 
     private void navigateToConversationsDelayed(int delayMillis) {
@@ -56,7 +58,9 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, ConversationsActivity.class);
                 startActivity(intent);
+                finish();
             }
         }, delayMillis);
+
     }
 }

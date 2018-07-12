@@ -51,9 +51,8 @@ public class ChatActivity extends AppCompatActivity {
                 if(bottom<oldBottom){
                     int messageCount = chatAdapter.getItemCount();
                     if (messageCount!=-1&&messageCount>=1){
-                        recyclerView.scrollToPosition(messageCount-1);
+                        recyclerView.smoothScrollToPosition(messageCount-1);
                     }
-
                 }
             }
         });
