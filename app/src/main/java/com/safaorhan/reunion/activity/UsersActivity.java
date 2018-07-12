@@ -1,5 +1,6 @@
 package com.safaorhan.reunion.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,6 +49,10 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
         FirestoreHelper.findOrCreateConversation(userRef, new FirestoreHelper.DocumentReferenceCallback() {
             @Override
             public void onCompleted(DocumentReference documentReference) {
+                String documentPath = documentReference.getPath();
+                Intent intent = new Intent(UsersActivity.this, ChatActivity.class);
+                intent.putExtra("documentPath", documentPath);
+                startActivity(intent);
                 finish();
             }
         });

@@ -91,18 +91,20 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
             nameText.setText(user.getName() + " " + user.getSurname());
             emailText.setText(user.getEmail());
 
-            //get first letter of each String item
-            String firstLetter = String.valueOf(user.getName().charAt(0));
+            if (user.getName()!=null){
+                //get first letter of each String item
+                String firstLetter = String.valueOf(user.getName().charAt(0));
 
-            ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
-            // generate random color
-            int color = generator.getColor(user.getEmail());
-            //int color = generator.getRandomColor();
+                ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+                // generate random color
+                int color = generator.getColor(user.getEmail());
+                //int color = generator.getRandomColor();
 
-            TextDrawable drawable = TextDrawable.builder()
-                    .buildRound(firstLetter, color); // radius in px
+                TextDrawable drawable = TextDrawable.builder()
+                        .buildRound(firstLetter, color); // radius in px
 
-            user_image.setImageDrawable(drawable);
+                user_image.setImageDrawable(drawable);
+            }
 
             if (user.getId().equals(FirebaseAuth.getInstance().getUid())) {
                 itemView.setOnClickListener(null);

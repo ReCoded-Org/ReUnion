@@ -19,11 +19,10 @@ import com.safaorhan.reunion.adapter.ChatAdapter;
 public class ChatActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private FloatingActionButton fab;
     private EditText chatMessageText;
     private ChatAdapter chatAdapter;
-    private FirebaseFirestore firestore;
     private LinearLayoutManager linearLayoutManager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,16 +30,16 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         recyclerView = findViewById(R.id.chat_rv);
-        firestore = FirebaseFirestore.getInstance();
+
 
         chatMessageText = findViewById(R.id.chat_message_et);
-        fab = findViewById(R.id.chat_fab);
+        FloatingActionButton fab = findViewById(R.id.chat_fab);
         final String documentPath = getIntent().getStringExtra("documentPath");
-        chatAdapter = ChatAdapter.get(firestore.document(documentPath));
+        chatAdapter = ChatAdapter.get(FirebaseFirestore.getInstance().document(documentPath));
         linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(chatAdapter);
-
 
         chatAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -50,9 +49,8 @@ public class ChatActivity extends AppCompatActivity {
                 int lastVisiblePosition = linearLayoutManager.findLastCompletelyVisibleItemPosition();
                 if (lastVisiblePosition == -1 ||
                         (positionStart >= (friendlyMessageCount - 1) && lastVisiblePosition == (positionStart - 1))) {
-                    recyclerView.smoothScrollToPosition(positionStart);
+                    recyclerView.scrollToPosition(positionStart);
                 }
-
             }
         });
 
@@ -70,9 +68,8 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(chatMessageText.getText().toString().trim())){
-                    FirestoreHelper.sendMessage(chatMessageText.getText().toString().trim(), firestore.document(documentPath));
+                    FirestoreHelper.sendMessage(chatMessageText.getText().toString().trim(), FirebaseFirestore.getInstance().document(documentPath));
                     chatMessageText.setText("");
-
                 } else {
                     chatMessageText.setText("");
                 }

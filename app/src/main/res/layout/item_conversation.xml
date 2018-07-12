@@ -28,15 +28,13 @@
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textColor="@color/userNameColor"
-            android:lineSpacingExtra="8dp"
-            android:text="Name"/>
+            android:lineSpacingExtra="8dp" />
 
         <TextView
             android:id="@+id/lastMessageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Something else"
             android:textSize="14sp"
             android:fontFamily="sans-serif"
             android:lineSpacingExtra="6sp"

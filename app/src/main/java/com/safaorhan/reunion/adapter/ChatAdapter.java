@@ -29,6 +29,9 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
         super(options);
     }
 
+    public int position(){
+       return getSnapshots().size();
+    }
     @Override
     protected void onBindViewHolder(@NonNull ChatHolder holder, int position, @NonNull Message model) {
         holder.bind(model);
