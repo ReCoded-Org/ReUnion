@@ -2,6 +2,7 @@ package com.safaorhan.reunion.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,7 +54,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
     public static ConversationAdapter get() {
         Query query = FirebaseFirestore.getInstance()
                 .collection("conversations")
-                //.orderBy("timestamp")
+                //.orderBy("conversationTime", Query.Direction.DESCENDING)
                 .whereEqualTo(FirestoreHelper.getMe().getId(), true)
                 .limit(50);
 
@@ -107,24 +108,31 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     User opponent = documentSnapshot.toObject(User.class);
-                    opponentNameText.setText(opponent.getName());
-                    //get first letter of each String item
-                    String firstLetter = String.valueOf(opponent.getName().charAt(0));
 
-                    ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
-                    // generate random color
-                    int color = generator.getRandomColor();
-                    //int color = generator.getRandomColor();
+                    try {
+                        opponentNameText.setText(opponent.getName());
+                        //get first letter of each String item
+                        String firstLetter = String.valueOf(opponent.getName().charAt(0));
 
-                    TextDrawable drawable = TextDrawable.builder()
-                            .buildRound(firstLetter, color); // radius in px
+                        ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+                        // generate random color
+                        int color = generator.getColor(opponent.getEmail());
+                        //int color = generator.getRandomColor();
 
-                    contact_image.setImageDrawable(drawable);
+                        TextDrawable drawable = TextDrawable.builder()
+                                .buildRound(firstLetter, color); // radius in px
+
+                        contact_image.setImageDrawable(drawable);
+
+                    }catch (NullPointerException e){
+
+                    }
+
                     itemView.setVisibility(View.VISIBLE);
                 }
             });
 
-            if(conversation.getLastMessage() != null) {
+            if (conversation.getLastMessage() != null) {
 
                 conversation.getLastMessage().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
