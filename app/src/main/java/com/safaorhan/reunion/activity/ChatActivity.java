@@ -33,8 +33,8 @@ public class ChatActivity extends AppCompatActivity {
         chatMessageText = findViewById(R.id.chat_message_et);
         FloatingActionButton fab = findViewById(R.id.chat_fab);
         final String documentPath = getIntent().getStringExtra("documentPath");
-        String name= getIntent().getStringExtra("name");
-        setTitle(getString(R.string.chat_with)+" "+name);
+        String name = getIntent().getStringExtra("name");
+        setTitle(getString(R.string.chat_with) + " " + name);
         chatAdapter = ChatAdapter.get(FirebaseFirestore.getInstance().document(documentPath));
         chatAdapter.setListener(new ChatAdapter.OnChatMessageAddedListener() {
             @Override
@@ -50,10 +50,10 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                if(bottom<oldBottom){
+                if (bottom < oldBottom) {
                     int messageCount = chatAdapter.getItemCount();
-                    if (messageCount!=-1&&messageCount>=1){
-                        recyclerView.smoothScrollToPosition(messageCount-1);
+                    if (messageCount != -1 && messageCount >= 1) {
+                        recyclerView.smoothScrollToPosition(messageCount - 1);
                     }
                 }
             }
@@ -62,10 +62,10 @@ public class ChatActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TextUtils.isEmpty(chatMessageText.getText().toString().trim())){
+                if (!TextUtils.isEmpty(chatMessageText.getText().toString().trim())) {
                     FirestoreHelper.sendMessage(chatMessageText.getText().toString().trim(), FirebaseFirestore.getInstance().document(documentPath));
                     chatMessageText.setText("");
-                }else {
+                } else {
                     chatMessageText.setText("");
                 }
             }
