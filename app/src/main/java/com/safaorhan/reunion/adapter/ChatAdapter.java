@@ -60,7 +60,7 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
             message.getFrom().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot snapshot) {
-                    chatNameText.setText(snapshot.getString("name"));
+                    chatNameText.setText(snapshot.getString("name")+":");
                     chatMessageText.setText(message.getText());
                     loadingView.setVisibility(View.INVISIBLE);
                 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,10 +48,12 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
     }
 
     @Override
-    public void onConversationClick(DocumentReference conversationRef) {
+    public void onConversationClick(DocumentReference conversationRef, String name) {
         String documentPath = conversationRef.getPath();
+        String chatName=name;
         Intent intent = new Intent(ConversationsActivity.this, ChatActivity.class);
         intent.putExtra("documentPath", documentPath);
+        intent.putExtra("name", chatName);
         startActivity(intent);
     }
 
