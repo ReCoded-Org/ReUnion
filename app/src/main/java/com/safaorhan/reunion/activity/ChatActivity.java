@@ -34,7 +34,7 @@ public class ChatActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.chat_fab);
         final String documentPath = getIntent().getStringExtra("documentPath");
         String name= getIntent().getStringExtra("name");
-        setTitle(getString(R.string.chat_with)+name);
+        setTitle(getString(R.string.chat_with)+" "+name);
         chatAdapter = ChatAdapter.get(FirebaseFirestore.getInstance().document(documentPath));
         chatAdapter.setListener(new ChatAdapter.OnChatMessageAddedListener() {
             @Override
