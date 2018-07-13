@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -102,7 +103,7 @@ public class FirestoreHelper {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         conversationRef
-                                .update("lastMessage", documentReference)
+                                .update("lastMessage", documentReference, "conversationTime", Timestamp.now())
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {

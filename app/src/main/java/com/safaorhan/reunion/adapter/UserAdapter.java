@@ -6,8 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -74,17 +77,34 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
         View itemView;
         TextView nameText;
         TextView emailText;
+        ImageView user_image;
 
         public UserHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             nameText = itemView.findViewById(R.id.nameText);
             emailText = itemView.findViewById(R.id.emailText);
+            user_image = itemView.findViewById(R.id.user_image);
         }
 
         public void bind(final User user) {
             nameText.setText(user.getName() + " " + user.getSurname());
             emailText.setText(user.getEmail());
+
+            if (user.getName()!=null){
+                //get first letter of each String item
+                String firstLetter = String.valueOf(user.getName().charAt(0));
+
+                ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+                // generate random color
+                int color = generator.getColor(user.getEmail());
+                //int color = generator.getRandomColor();
+
+                TextDrawable drawable = TextDrawable.builder()
+                        .buildRound(firstLetter, color); // radius in px
+
+                user_image.setImageDrawable(drawable);
+            }
 
             if (user.getId().equals(FirebaseAuth.getInstance().getUid())) {
                 itemView.setOnClickListener(null);

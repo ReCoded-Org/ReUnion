@@ -2,6 +2,7 @@ package com.safaorhan.reunion.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,7 @@ import com.safaorhan.reunion.model.User;
 public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, ConversationAdapter.ConversationHolder> {
     private static final String TAG = ConversationAdapter.class.getSimpleName();
     ConversationClickListener conversationClickListener;
-
+    public static String NAME=null;
 
     public ConversationAdapter(@NonNull FirestoreRecyclerOptions<Conversation> options) {
         super(options);
@@ -37,7 +38,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
         if (conversationClickListener == null) {
             conversationClickListener = new ConversationClickListener() {
                 @Override
-                public void onConversationClick(DocumentReference documentReference) {
+                public void onConversationClick(DocumentReference documentReference, String name) {
                     Log.e(TAG, "You need to call setConversationClickListener() to set the click listener of ConversationAdapter");
                 }
             };
@@ -53,7 +54,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
     public static ConversationAdapter get() {
         Query query = FirebaseFirestore.getInstance()
                 .collection("conversations")
-                //.orderBy("timestamp")
+                //.orderBy("conversationTime", Query.Direction.DESCENDING)
                 .whereEqualTo(FirestoreHelper.getMe().getId(), true)
                 .limit(50);
 
@@ -99,7 +100,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getConversationClickListener().onConversationClick(FirestoreHelper.getConversationRef(conversation));
+                    getConversationClickListener().onConversationClick(FirestoreHelper.getConversationRef(conversation), opponentNameText.getText().toString());
                 }
             });
 
@@ -107,24 +108,31 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     User opponent = documentSnapshot.toObject(User.class);
-                    opponentNameText.setText(opponent.getName());
-                    //get first letter of each String item
-                    String firstLetter = String.valueOf(opponent.getName().charAt(0));
 
-                    ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
-                    // generate random color
-                    int color = generator.getRandomColor();
-                    //int color = generator.getRandomColor();
+                    try {
+                        opponentNameText.setText(opponent.getName());
+                        //get first letter of each String item
+                        String firstLetter = String.valueOf(opponent.getName().charAt(0));
 
-                    TextDrawable drawable = TextDrawable.builder()
-                            .buildRound(firstLetter, color); // radius in px
+                        ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+                        // generate random color
+                        int color = generator.getColor(opponent.getEmail());
+                        //int color = generator.getRandomColor();
 
-                    contact_image.setImageDrawable(drawable);
+                        TextDrawable drawable = TextDrawable.builder()
+                                .buildRound(firstLetter, color); // radius in px
+
+                        contact_image.setImageDrawable(drawable);
+
+                    }catch (NullPointerException e){
+
+                    }
+
                     itemView.setVisibility(View.VISIBLE);
                 }
             });
 
-            if(conversation.getLastMessage() != null) {
+            if (conversation.getLastMessage() != null) {
 
                 conversation.getLastMessage().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -141,6 +149,6 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
     }
 
     public interface ConversationClickListener {
-        void onConversationClick(DocumentReference conversationRef);
+        void onConversationClick(DocumentReference conversationRef, String name);
     }
 }
