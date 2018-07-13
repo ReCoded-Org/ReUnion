@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.common.ChangeEventType;
@@ -23,7 +24,6 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
 
     OnChatMessageAddedListener listener;
 
-
     public ChatAdapter(@NonNull FirestoreRecyclerOptions<Message> options) {
         super(options);
     }
@@ -31,7 +31,6 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
     @Override
     protected void onBindViewHolder(@NonNull final ChatHolder holder, int position, @NonNull final Message model) {
         holder.bind(model);
-
     }
 
     @NonNull
@@ -45,14 +44,14 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
         View itemView;
         TextView chatNameText;
         TextView chatMessageText;
-        View loadingView;
+        RelativeLayout loadingView;
 
         public ChatHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             chatNameText = itemView.findViewById(R.id.chat_item_name);
             chatMessageText = itemView.findViewById(R.id.chat_item_message);
-            loadingView = itemView.findViewById(R.id.loadingView);
+            loadingView = itemView.findViewById(R.id.item_chat_relative_layout);
         }
 
         public void bind(final Message message) {
@@ -60,9 +59,14 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
             message.getFrom().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot snapshot) {
-                    chatNameText.setText(snapshot.getString("name")+":");
-                    chatMessageText.setText(message.getText());
-                    loadingView.setVisibility(View.INVISIBLE);
+                    if (message.getSentAt()!= null){
+                        chatNameText.setText(snapshot.getString("name")+":");
+                        chatMessageText.setText(message.getText());
+                        loadingView.setVisibility(View.VISIBLE);
+                    }else{
+                        chatNameText.setText("");
+                        chatMessageText.setText("");
+                    }
                 }
             });
         }

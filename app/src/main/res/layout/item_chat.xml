@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/item_chat_relative_layout"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp">
 
@@ -17,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
+            android:fontFamily="sans-serif"
             android:textColor="@color/userNameColor"
             android:textSize="16sp"
             tools:text="Group 8" />
@@ -25,15 +27,11 @@
             android:id="@+id/chat_item_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
             android:textColor="@color/userInfoColor"
             android:textSize="14sp"
             tools:text="We'll win :)" />
 
     </LinearLayout>
-    <View
-        android:id="@+id/loadingView"
-        android:layout_width="match_parent"
-        android:background="#FFFFFF"
-        android:layout_height="70dp"/>
 
 </RelativeLayout>

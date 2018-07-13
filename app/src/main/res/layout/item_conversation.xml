@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="72dp"
     android:background="?android:attr/selectableItemBackground"
     android:orientation="horizontal"
     android:padding="16dp">
@@ -11,7 +11,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:contentDescription="@string/app_name" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,23 +22,21 @@
             android:id="@+id/opponentNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="16sp"
             android:fontFamily="sans-serif"
-            android:textStyle="normal"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
             android:textColor="@color/userNameColor"
-            android:lineSpacingExtra="8dp" />
+            android:textSize="16sp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/lastMessageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="14sp"
             android:fontFamily="sans-serif"
+            android:gravity="center"
             android:lineSpacingExtra="6sp"
-            android:textColor="@color/userInfoColor"/>
-
+            android:textColor="@color/userInfoColor"
+            android:textSize="14sp" />
     </LinearLayout>
-
 </LinearLayout>
